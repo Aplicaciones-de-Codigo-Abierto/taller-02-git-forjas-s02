@@ -22,17 +22,6 @@ git --version
 
 Este comando debería mostrar la versión de Git instalada en tu sistema. Si no ves la versión, revisa el proceso de instalación.
 
-### Instalación de Node.js
-
-Node.js es un entorno de ejecución para JavaScript que permite ejecutar código JavaScript en el servidor. Es fundamental para el desarrollo de aplicaciones modernas, especialmente aquellas que utilizan frameworks como Express o React. Puedes descargar Node.js desde el [sitio oficial de Node.js](https://nodejs.org/) y seguir las instrucciones de instalación. Al igual que con Git, verifica que Node.js esté correctamente instalado ejecutando:
-
-```bash
-node -v
-```
-
-Este comando debería mostrar la versión de Node.js instalada en tu sistema. Si no aparece, asegúrate de que la instalación se haya completado correctamente.
-
-
 <!-- ------------------------ -->
 
 ## Introducción a Codeberg
@@ -391,7 +380,7 @@ Una vez creado el proyecto, el siguiente paso es registrar los *issues* correspo
    ![Issue filled info](./images/issuefilledinfo.png)
 
 <aside class="negative">
-⚠️ **Si no aparecen etiquetas disponibles** (labels), dirígete a la sección principal de *Issues* en tu repositorio, haz clic en el botón **"Labels"**, selecciona el conjunto de etiquetas predefinido y luego haz clic en **"Use this preset"** para habilitarlas.
+⚠️ Si no aparecen etiquetas disponibles (labels), dirígete a la sección principal de Issues en tu repositorio, haz clic en el botón "Labels", selecciona el conjunto de etiquetas predefinido y luego haz clic en "Use this preset" para habilitarlas.
 </aside>
 
 ---
@@ -454,7 +443,7 @@ A continuación se muestran ejemplos de un *issue* documentado y cerrado exitosa
 ![Issue example 2](./images/issuexample2.png)
 
 <aside class="negative">
-⚠️ Aunque el ejemplo proviene de GitHub, lo importante es mantener una estructura clara en los comentarios y documentación del *issue*.
+⚠️ Aunque el ejemplo proviene de GitHub, lo importante es mantener una estructura clara en los comentarios y documentación del issue.
 </aside>
 
 ## Actividad Práctica
