@@ -446,29 +446,6 @@ A continuación se muestran ejemplos de un *issue* documentado y cerrado exitosa
 ⚠️ Aunque el ejemplo proviene de GitHub, lo importante es mantener una estructura clara en los comentarios y documentación del issue.
 </aside>
 
-## Actividad Práctica
-
-💡 **Migración de un repositorio a Codeberg**
-
-1. Selecciona un repositorio tuyo (puede ser de GitHub, GitLab o local)
-2. Sube ese repositorio a Codeberg:
-   - Crea uno nuevo
-   - Agrega Codeberg como nuevo `remote`:
-
-```bash
-git remote add codeberg https://codeberg.org/usuario/repositorio.git
-git push codeberg main
-```
-
-3. Documenta en un archivo PDF:
-   - Capturas de pantalla del repositorio original y de Codeberg
-   - Comparación de ramas, commits, releases, CI, etc.
-   - Enlaces a ambos repositorios
-
----
-<aside class="negative">
-⚠️ Recuerda siempre verificar tus configuraciones de ramas, permisos y commits antes de subir a producción.
-</aside>
 <!-- ------------------------ -->
 
 ## Control de versiones - Uso Básico de Git
