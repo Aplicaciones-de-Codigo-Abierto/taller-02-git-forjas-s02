@@ -1,635 +1,296 @@
-<!DOCTYPE html>
+
+<!doctype html>
 
 <html>
-  <head>
-    <meta
-      name="viewport"
-      content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes"
-    />
-    <meta name="theme-color" content="#4F7DC9" />
-    <meta charset="UTF-8" />
-    <title>Taller 2 - Control de Versiones y Buenas Prácticas con Git</title>
-    <link
-      rel="stylesheet"
-      href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono"
-    />
-    <link
-      rel="stylesheet"
-      href="//fonts.googleapis.com/icon?family=Material+Icons"
-    />
-    <link
-      rel="stylesheet"
-      href="https://storage.googleapis.com/claat-public/codelab-elements.css"
-    />
-    <style>
-      .success {
-        color: #1e8e3e;
-      }
-      .error {
-        color: red;
-      }
-    </style>
-  </head>
-  <body>
-    <google-codelab-analytics
-      gaid="UA-49880327-14"
-      ga4id=""
-    ></google-codelab-analytics>
-    <google-codelab
-      codelab-gaid=""
-      codelab-ga4id=""
-      id="aca-012025-taller-2"
-      title="Taller 2 - Control de Versiones y Buenas Prácticas con Git"
-      environment="web"
-      feedback-link=""
-    >
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Taller 2 - Control de Versiones y Buenas Prácticas con Git</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/claat-public/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14" ga4id=""></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  codelab-ga4id=""
+                  id="aca-012025-taller-2"
+                  title="Taller 2 - Control de Versiones y Buenas Prácticas con Git"
+                  environment="web"
+                  feedback-link="">
+    
       <google-codelab-step label="Prerrequisitos" duration="0">
-        <p>
-          Antes de comenzar con el taller, es fundamental asegurarse de que
-          tienes instaladas y configuradas las herramientas necesarias. A
-          continuación, se detallan los pasos para la instalación y
-          configuración inicial de Git y Node.js.
-        </p>
-        <h2 is-upgraded>Instalación de Git</h2>
-        <p>
-          Para utilizar Git, primero debes instalarlo en tu sistema. Git está
-          disponible para múltiples plataformas, incluyendo Windows, macOS y
-          Linux. Puedes descargarlo desde el
-          <a href="https://git-scm.com/downloads" target="_blank"
-            >sitio oficial de Git</a
-          >
-          y seguir las instrucciones de instalación específicas para tu sistema
-          operativo. Asegúrate de que Git esté correctamente instalado
-          ejecutando el siguiente comando en tu terminal:
-        </p>
-        <pre><code language="language-bash" class="language-bash">git --version
+        <p>Antes de comenzar con el taller, es fundamental asegurarse de que tienes instaladas y configuradas las herramientas necesarias. A continuación, se detallan los pasos para la instalación y configuración inicial de Git y Node.js.</p>
+<h2 is-upgraded>Instalación de Git</h2>
+<p>Para utilizar Git, primero debes instalarlo en tu sistema. Git está disponible para múltiples plataformas, incluyendo Windows, macOS y Linux. Puedes descargarlo desde el <a href="https://git-scm.com/downloads" target="_blank">sitio oficial de Git</a> y seguir las instrucciones de instalación específicas para tu sistema operativo. Asegúrate de que Git esté correctamente instalado ejecutando el siguiente comando en tu terminal:</p>
+<pre><code language="language-bash" class="language-bash">git --version
 </code></pre>
-        <p>
-          Este comando debería mostrar la versión de Git instalada en tu
-          sistema. Si no ves la versión, revisa el proceso de instalación.
-        </p>
-      </google-codelab-step>
+<p>Este comando debería mostrar la versión de Git instalada en tu sistema. Si no ves la versión, revisa el proceso de instalación.</p>
 
+
+      </google-codelab-step>
+    
       <google-codelab-step label="Introducción a Codeberg" duration="0">
-        <p>
-          <a href="https://codeberg.org" target="_blank">Codeberg</a> es una
-          plataforma de alojamiento de código fuente basada en
-          <strong>Gitea</strong>, una alternativa libre y de código abierto a
-          servicios como GitHub o GitLab. Su principal objetivo es ofrecer un
-          entorno sin publicidad, orientado a la comunidad y enfocado en el
-          desarrollo de software libre.
-        </p>
-        <p class="image-container">
-          <img alt="Codeberg intro" src="img/f071afef87296c1.png" />
-        </p>
-        <h2 is-upgraded>🛠️ Características principales</h2>
-        <ul>
-          <li>Repositorios públicos y privados</li>
-          <li>Sistema de issues y pull requests</li>
-          <li>Wikis y páginas del proyecto</li>
-          <li>Integración continua y automatización (CI/CD)</li>
-          <li>Interfaz amigable basada en Gitea</li>
-        </ul>
-        <h2 is-upgraded>Registro en Codeberg</h2>
-        <h3 is-upgraded>1. Crear cuenta</h3>
-        <ol type="1">
-          <li>
-            Ve a
-            <a href="https://codeberg.org" target="_blank"
-              >https://codeberg.org</a
-            >
-          </li>
-          <li>Haz clic en <strong>&#34;Sign Up&#34;</strong></li>
-          <li>
-            Completa los campos:
-            <ul>
-              <li><code>Username</code>: nombre de usuario único</li>
-              <li><code>Email</code>: correo electrónico válido</li>
-              <li><code>Password</code>: contraseña segura</li>
-            </ul>
-          </li>
-          <li>Acepta los términos de servicio y completa el captcha</li>
-          <li>Haz clic en <strong>&#34;Register&#34;</strong></li>
-        </ol>
-        <p class="image-container">
-          <img alt="Codeberg register" src="img/c27aef3af6597871.png" />
-        </p>
-        <h3 is-upgraded>2. Verificar tu cuenta</h3>
-        <ul>
-          <li>
-            Revisa tu correo y haz clic en el enlace de verificación para
-            activar la cuenta.
-          </li>
-        </ul>
-        <h2 is-upgraded>Crear y Gestionar Repositorios</h2>
-        <h3 is-upgraded>1. Crear un nuevo repositorio</h3>
-        <ol type="1">
-          <li>
-            Una vez dentro, haz clic en <strong>&#34;New Repository&#34;</strong
-            ><img alt="New repo" src="img/e03c332927245a22.png" />
-          </li>
-          <li>
-            Rellena los datos: nombre del repositorio, descripción, visibilidad,
-            etc. <img alt="New Repo form" src="img/c76df4f297ce502.png" />
-          </li>
-          <li>
-            Puedes inicializar el repositorio con un archivo
-            <code>README</code>, <code>.gitignore</code> o una licencia.
-            <img alt="Add license" src="img/38acffe3e478fdfe.png" />
-          </li>
-          <li>Clic en <strong>&#34;Create Repository&#34;</strong></li>
-        </ol>
-        <h3 is-upgraded>2. Configuración del repositorio</h3>
-        <p>
-          Accede al repositorio:
-          <img alt="Configuración del repo" src="img/6980c92c2133f323.png" />
-        </p>
-        <p>Desde la pestaña <strong>&#34;Settings&#34;</strong> podrás:</p>
-        <ul>
-          <li>Añadir colaboradores (<code>Collaborators</code>)</li>
-          <li>Configurar ramas (<code>Branches</code>)</li>
-          <li>Añadir webhooks (<code>Webhooks</code>)</li>
-          <li>Habilitar Wiki y Páginas del Proyecto</li>
-        </ul>
-        <h2 is-upgraded>Uso de Git con Codeberg</h2>
-        <h3 is-upgraded>1. Configuración inicial</h3>
-        <p>Configura tu identidad en Git (si aún no lo has hecho):</p>
-        <pre><code language="language-bash" class="language-bash">git config --global user.name &#34;Tu Nombre&#34;
+        <p><a href="https://codeberg.org" target="_blank">Codeberg</a> es una plataforma de alojamiento de código fuente basada en <strong>Gitea</strong>, una alternativa libre y de código abierto a servicios como GitHub o GitLab. Su principal objetivo es ofrecer un entorno sin publicidad, orientado a la comunidad y enfocado en el desarrollo de software libre.</p>
+<p class="image-container"><img alt="Codeberg intro" src="img/f071afef87296c1.png"></p>
+<h2 is-upgraded>🛠️ Características principales</h2>
+<ul>
+<li>Repositorios públicos y privados</li>
+<li>Sistema de issues y pull requests</li>
+<li>Wikis y páginas del proyecto</li>
+<li>Integración continua y automatización (CI/CD)</li>
+<li>Interfaz amigable basada en Gitea</li>
+</ul>
+<h2 is-upgraded>Registro en Codeberg</h2>
+<h3 is-upgraded>1. Crear cuenta</h3>
+<ol type="1">
+<li>Ve a <a href="https://codeberg.org" target="_blank">https://codeberg.org</a></li>
+<li>Haz clic en <strong>&#34;Sign Up&#34;</strong></li>
+<li>Completa los campos: <ul>
+<li><code>Username</code>: nombre de usuario único</li>
+<li><code>Email</code>: correo electrónico válido</li>
+<li><code>Password</code>: contraseña segura</li>
+</ul>
+</li>
+<li>Acepta los términos de servicio y completa el captcha</li>
+<li>Haz clic en <strong>&#34;Register&#34;</strong></li>
+</ol>
+<p class="image-container"><img alt="Codeberg register" src="img/c27aef3af6597871.png"></p>
+<h3 is-upgraded>2. Verificar tu cuenta</h3>
+<ul>
+<li>Revisa tu correo y haz clic en el enlace de verificación para activar la cuenta.</li>
+</ul>
+<h2 is-upgraded>Crear y Gestionar Repositorios</h2>
+<h3 is-upgraded>1. Crear un nuevo repositorio</h3>
+<ol type="1">
+<li>Una vez dentro, haz clic en <strong>&#34;New Repository&#34;</strong><img alt="New repo" src="img/e03c332927245a22.png"></li>
+<li>Rellena los datos: nombre del repositorio, descripción, visibilidad, etc. <img alt="New Repo form" src="img/c76df4f297ce502.png"></li>
+<li>Puedes inicializar el repositorio con un archivo <code>README</code>, <code>.gitignore</code> o una licencia. <img alt="Add license" src="img/38acffe3e478fdfe.png"></li>
+<li>Clic en <strong>&#34;Create Repository&#34;</strong></li>
+</ol>
+<h3 is-upgraded>2. Configuración del repositorio</h3>
+<p>Accede al repositorio: <img alt="Configuración del repo" src="img/6980c92c2133f323.png"></p>
+<p>Desde la pestaña <strong>&#34;Settings&#34;</strong> podrás:</p>
+<ul>
+<li>Añadir colaboradores (<code>Collaborators</code>)</li>
+<li>Configurar ramas (<code>Branches</code>)</li>
+<li>Añadir webhooks (<code>Webhooks</code>)</li>
+<li>Habilitar Wiki y Páginas del Proyecto</li>
+</ul>
+<h2 is-upgraded>Uso de Git con Codeberg</h2>
+<h3 is-upgraded>1. Configuración inicial</h3>
+<p>Configura tu identidad en Git (si aún no lo has hecho):</p>
+<pre><code language="language-bash" class="language-bash">git config --global user.name &#34;Tu Nombre&#34;
 git config --global user.email &#34;tu.email@ejemplo.com&#34;
 </code></pre>
-        <h3 is-upgraded>2. Clonar un repositorio</h3>
-        <p>Copia la URL HTTPS desde Codeberg y clona el repositorio:</p>
-        <pre><code language="language-bash" class="language-bash">git clone https://codeberg.org/tu_usuario/tu_repositorio.git
+<h3 is-upgraded>2. Clonar un repositorio</h3>
+<p>Copia la URL HTTPS desde Codeberg y clona el repositorio:</p>
+<pre><code language="language-bash" class="language-bash">git clone https://codeberg.org/tu_usuario/tu_repositorio.git
 </code></pre>
-        <h3 is-upgraded>3. Enviar cambios al repositorio</h3>
-        <pre><code language="language-bash" class="language-bash">git add .
+<h3 is-upgraded>3. Enviar cambios al repositorio</h3>
+<pre><code language="language-bash" class="language-bash">git add .
 git commit -m &#34;feat: cambios importantes&#34;
 git push origin main
 </code></pre>
-        <h2 is-upgraded>Colaboración en Codeberg</h2>
-        <h3 is-upgraded>Issues</h3>
-        <ol type="1">
-          <li>
-            Entra a la pestaña <strong>&#34;Issues&#34;</strong> de tu
-            repositorio
-          </li>
-          <li>Haz clic en <strong>&#34;New Issue&#34;</strong></li>
-          <li>Describe el problema o sugerencia</li>
-        </ol>
-        <h3 is-upgraded>Pull Requests</h3>
-        <ol type="1">
-          <li>Crea una rama (<code>feature/nueva-funcionalidad</code>)</li>
-          <li>Haz tus cambios y súbelos</li>
-          <li>
-            Desde Codeberg, crea un Pull Request de tu rama hacia
-            <code>main</code> o <code>develop</code>
-          </li>
-          <li>Comenta, discute y revisa los cambios con tus compañeros</li>
-        </ol>
-        <h2 is-upgraded>Automatización e Integraciones</h2>
-        <h3 is-upgraded>Integración Continua (CI)</h3>
-        <p>
-          Puedes configurar workflows CI/CD utilizando archivos
-          <code>.yml</code>, por ejemplo, con GitHub Actions, Drone, Travis CI,
-          etc.
-        </p>
-        <ul>
-          <li>
-            Crear archivo <code>.github/workflows/deploy.yml</code> (o el
-            sistema que prefieras)
-          </li>
-          <li>Automatiza pruebas, builds o despliegues</li>
-        </ul>
-        <h3 is-upgraded>Webhooks y API</h3>
-        <ul>
-          <li>
-            Desde la pestaña
-            <strong>&#34;Settings&#34; &gt; &#34;Webhooks&#34;</strong> puedes
-            integrar servicios externos
-          </li>
-          <li>
-            También puedes usar la
-            <a href="https://codeberg.org/api/swagger" target="_blank"
-              >API de Codeberg</a
-            >
-            para automatizar tareas
-          </li>
-        </ul>
-        <h2 is-upgraded>Wikis y Páginas de Proyecto</h2>
-        <ul>
-          <li>Habilita el Wiki desde <strong>&#34;Settings&#34;</strong></li>
-          <li>Documenta tu proyecto, instalación, uso, etc.</li>
-          <li>
-            Para alojar una web del proyecto (como GitHub Pages), configura la
-            opción correspondiente o usa un workflow de CI que haga el
-            despliegue
-          </li>
-        </ul>
-        <h2 is-upgraded>Comunidad y Soporte</h2>
-        <ul>
-          <li>
-            Documentación:
-            <a href="https://docs.codeberg.org" target="_blank"
-              >https://docs.codeberg.org</a
-            >
-          </li>
-          <li>
-            Comunidad y contribución:
-            <a href="https://codeberg.org/Codeberg/Contributing" target="_blank"
-              >https://codeberg.org/Codeberg/Contributing</a
-            >
-          </li>
-          <li>
-            Soporte técnico: Accesible desde tu cuenta de Codeberg o foros
-            abiertos
-          </li>
-        </ul>
-      </google-codelab-step>
+<h2 is-upgraded>Colaboración en Codeberg</h2>
+<h3 is-upgraded>Issues</h3>
+<ol type="1">
+<li>Entra a la pestaña <strong>&#34;Issues&#34;</strong> de tu repositorio</li>
+<li>Haz clic en <strong>&#34;New Issue&#34;</strong></li>
+<li>Describe el problema o sugerencia</li>
+</ol>
+<h3 is-upgraded>Pull Requests</h3>
+<ol type="1">
+<li>Crea una rama (<code>feature/nueva-funcionalidad</code>)</li>
+<li>Haz tus cambios y súbelos</li>
+<li>Desde Codeberg, crea un Pull Request de tu rama hacia <code>main</code> o <code>develop</code></li>
+<li>Comenta, discute y revisa los cambios con tus compañeros</li>
+</ol>
+<h2 is-upgraded>Automatización e Integraciones</h2>
+<h3 is-upgraded>Integración Continua (CI)</h3>
+<p>Puedes configurar workflows CI/CD utilizando archivos <code>.yml</code>, por ejemplo, con GitHub Actions, Drone, Travis CI, etc.</p>
+<ul>
+<li>Crear archivo <code>.github/workflows/deploy.yml</code> (o el sistema que prefieras)</li>
+<li>Automatiza pruebas, builds o despliegues</li>
+</ul>
+<h3 is-upgraded>Webhooks y API</h3>
+<ul>
+<li>Desde la pestaña <strong>&#34;Settings&#34; &gt; &#34;Webhooks&#34;</strong> puedes integrar servicios externos</li>
+<li>También puedes usar la <a href="https://codeberg.org/api/swagger" target="_blank">API de Codeberg</a> para automatizar tareas</li>
+</ul>
+<h2 is-upgraded>Wikis y Páginas de Proyecto</h2>
+<ul>
+<li>Habilita el Wiki desde <strong>&#34;Settings&#34;</strong></li>
+<li>Documenta tu proyecto, instalación, uso, etc.</li>
+<li>Para alojar una web del proyecto (como GitHub Pages), configura la opción correspondiente o usa un workflow de CI que haga el despliegue</li>
+</ul>
+<h2 is-upgraded>Comunidad y Soporte</h2>
+<ul>
+<li>Documentación: <a href="https://docs.codeberg.org" target="_blank">https://docs.codeberg.org</a></li>
+<li>Comunidad y contribución: <a href="https://codeberg.org/Codeberg/Contributing" target="_blank">https://codeberg.org/Codeberg/Contributing</a></li>
+<li>Soporte técnico: Accesible desde tu cuenta de Codeberg o foros abiertos</li>
+</ul>
 
+
+      </google-codelab-step>
+    
       <google-codelab-step label="Migrar Repositorio a Codeberg" duration="0">
-        <p>
-          Codeberg permite realizar
-          <strong>migraciones automáticas</strong> desde otras forjas como
-          GitHub, GitLab o Bitbucket mediante su asistente de importación.
-        </p>
-        <p>
-          A continuación, se detalla el procedimiento paso a paso para migrar un
-          repositorio existente:
-        </p>
-        <h2 is-upgraded>1. Iniciar el proceso de migración</h2>
-        <p>Desde tu perfil en Codeberg:</p>
-        <ul>
-          <li>
-            Dirígete al menú superior y selecciona
-            <strong>&#34;New Migration&#34;</strong>
-          </li>
-        </ul>
-        <p class="image-container">
-          <img alt="Migración" src="img/f46530e5a51136c8.png" />
-        </p>
-        <h2 is-upgraded>2. Seleccionar la forja de origen</h2>
-        <ul>
-          <li>
-            Elige la plataforma de donde migrarás el repositorio (por ejemplo,
-            GitHub)
-          </li>
-        </ul>
-        <p class="image-container">
-          <img alt="Forja de origen" src="img/f4f7d95b0e520235.png" />
-        </p>
-        <h2 is-upgraded>3. Llenar el formulario de migración</h2>
-        <p>Completa los siguientes campos en el formulario:</p>
-        <ul>
-          <li>
-            <strong>Clone address (URL del repositorio original)<br /></strong>
-            Ejemplo: <code>https://github.com/usuario/repositorio.git</code>
-          </li>
-          <li>
-            <strong>Access token<br /></strong> Genera un token de acceso
-            personal en tu cuenta de GitHub con permisos de lectura. Puedes
-            crearlo desde:
-            <a href="https://github.com/settings/tokens" target="_blank"
-              >https://github.com/settings/tokens</a
-            >
-          </li>
-          <li>
-            <strong>Migrate the following items<br /></strong> Marca lo que
-            deseas migrar: código, issues, wiki, pull requests, etc.
-          </li>
-          <li>
-            <strong>Owner<br /></strong> Selecciona tu usuario de Codeberg o una
-            organización en la que participes.
-          </li>
-          <li>
-            <strong>Repository name<br /></strong> El nombre del nuevo
-            repositorio en Codeberg.
-          </li>
-          <li>
-            <strong>Visibility<br /></strong> Elige si el repositorio será
-            público o privado.
-          </li>
-          <li>
-            <strong>Description</strong> (opcional)<br />
-            Breve descripción del proyecto.
-          </li>
-        </ul>
-        <p class="image-container">
-          <img alt="Formulario de migración" src="img/a8a7b14230b6c4cf.png" />
-        </p>
-        <h2 is-upgraded>4. Ejecutar la migración</h2>
-        <p>
-          Haz clic en <strong>&#34;Migrate Repository&#34;</strong> para iniciar
-          el proceso.
-        </p>
-        <p>
-          ⏳ La migración puede tardar unos minutos dependiendo del tamaño y
-          elementos seleccionados.
-        </p>
-        <h2 is-upgraded>✅ Verificación post-migración</h2>
-        <p>
-          Una vez completada la migración, revisa tu nuevo repositorio en
-          Codeberg:
-        </p>
-        <ul>
-          <li>Archivos y commits</li>
-          <li>Issues y pull requests (si fueron migrados)</li>
-          <li>Wiki (si estaba activado)</li>
-          <li>Etiquetas (tags) y ramas</li>
-        </ul>
-        <h2 is-upgraded>🔐 Sobre el Access Token de GitHub</h2>
-        <p>Para generar un token de acceso personal en GitHub:</p>
-        <ol type="1">
-          <li>
-            Ve a
-            <a href="https://github.com/settings/tokens" target="_blank"
-              >https://github.com/settings/tokens</a
-            >
-          </li>
-          <li>Haz clic en <strong>&#34;Generate new token&#34;</strong></li>
-          <li>
-            Elige un nombre, define una expiración y selecciona estos scopes
-            mínimos:
-            <ul>
-              <li>
-                <code>repo</code> (lectura de repositorios privados, si aplica)
-              </li>
-              <li>
-                <code>read:org</code> (si el repositorio pertenece a una
-                organización)
-              </li>
-            </ul>
-          </li>
-          <li>Copia y guarda el token. No podrá ser visto nuevamente.</li>
-        </ol>
-        <h2 is-upgraded>📝 Recomendaciones finales</h2>
-        <ul>
-          <li>
-            Si no migraste elementos como <em>issues</em> o <em>wiki</em>,
-            puedes exportarlos manualmente.
-          </li>
-          <li>
-            Verifica los permisos de colaboradores después de la migración.
-          </li>
-          <li>
-            Actualiza cualquier referencia o URL antigua en el
-            <code>README.md</code>.
-          </li>
-        </ul>
-        <h2 is-upgraded>Recursos útiles</h2>
-        <ul>
-          <li>
-            Documentación oficial de Codeberg:
-            <a href="https://docs.codeberg.org" target="_blank"
-              >https://docs.codeberg.org</a
-            >
-          </li>
-          <li>
-            Contribuir al proyecto Codeberg:
-            <a href="https://codeberg.org/Codeberg/Contributing" target="_blank"
-              >https://codeberg.org/Codeberg/Contributing</a
-            >
-          </li>
-        </ul>
-      </google-codelab-step>
+        <p>Codeberg permite realizar <strong>migraciones automáticas</strong> desde otras forjas como GitHub, GitLab o Bitbucket mediante su asistente de importación.</p>
+<p>A continuación, se detalla el procedimiento paso a paso para migrar un repositorio existente:</p>
+<h2 is-upgraded>1. Iniciar el proceso de migración</h2>
+<p>Desde tu perfil en Codeberg:</p>
+<ul>
+<li>Dirígete al menú superior y selecciona <strong>&#34;New Migration&#34;</strong></li>
+</ul>
+<p class="image-container"><img alt="Migración" src="img/f46530e5a51136c8.png"></p>
+<h2 is-upgraded>2. Seleccionar la forja de origen</h2>
+<ul>
+<li>Elige la plataforma de donde migrarás el repositorio (por ejemplo, GitHub)</li>
+</ul>
+<p class="image-container"><img alt="Forja de origen" src="img/f4f7d95b0e520235.png"></p>
+<h2 is-upgraded>3. Llenar el formulario de migración</h2>
+<p>Completa los siguientes campos en el formulario:</p>
+<ul>
+<li><strong>Clone address (URL del repositorio original)<br></strong> Ejemplo: <code>https://github.com/usuario/repositorio.git</code></li>
+<li><strong>Access token<br></strong> Genera un token de acceso personal en tu cuenta de GitHub con permisos de lectura. Puedes crearlo desde: <a href="https://github.com/settings/tokens" target="_blank">https://github.com/settings/tokens</a></li>
+<li><strong>Migrate the following items<br></strong> Marca lo que deseas migrar: código, issues, wiki, pull requests, etc.</li>
+<li><strong>Owner<br></strong> Selecciona tu usuario de Codeberg o una organización en la que participes.</li>
+<li><strong>Repository name<br></strong> El nombre del nuevo repositorio en Codeberg.</li>
+<li><strong>Visibility<br></strong> Elige si el repositorio será público o privado.</li>
+<li><strong>Description</strong> (opcional)<br> Breve descripción del proyecto.</li>
+</ul>
+<p class="image-container"><img alt="Formulario de migración" src="img/a8a7b14230b6c4cf.png"></p>
+<h2 is-upgraded>4. Ejecutar la migración</h2>
+<p>Haz clic en <strong>&#34;Migrate Repository&#34;</strong> para iniciar el proceso.</p>
+<p>⏳ La migración puede tardar unos minutos dependiendo del tamaño y elementos seleccionados.</p>
+<h2 is-upgraded>✅ Verificación post-migración</h2>
+<p>Una vez completada la migración, revisa tu nuevo repositorio en Codeberg:</p>
+<ul>
+<li>Archivos y commits</li>
+<li>Issues y pull requests (si fueron migrados)</li>
+<li>Wiki (si estaba activado)</li>
+<li>Etiquetas (tags) y ramas</li>
+</ul>
+<h2 is-upgraded>🔐 Sobre el Access Token de GitHub</h2>
+<p>Para generar un token de acceso personal en GitHub:</p>
+<ol type="1">
+<li>Ve a <a href="https://github.com/settings/tokens" target="_blank">https://github.com/settings/tokens</a></li>
+<li>Haz clic en <strong>&#34;Generate new token&#34;</strong></li>
+<li>Elige un nombre, define una expiración y selecciona estos scopes mínimos: <ul>
+<li><code>repo</code> (lectura de repositorios privados, si aplica)</li>
+<li><code>read:org</code> (si el repositorio pertenece a una organización)</li>
+</ul>
+</li>
+<li>Copia y guarda el token. No podrá ser visto nuevamente.</li>
+</ol>
+<h2 is-upgraded>📝 Recomendaciones finales</h2>
+<ul>
+<li>Si no migraste elementos como <em>issues</em> o <em>wiki</em>, puedes exportarlos manualmente.</li>
+<li>Verifica los permisos de colaboradores después de la migración.</li>
+<li>Actualiza cualquier referencia o URL antigua en el <code>README.md</code>.</li>
+</ul>
+<h2 is-upgraded>Recursos útiles</h2>
+<ul>
+<li>Documentación oficial de Codeberg: <a href="https://docs.codeberg.org" target="_blank">https://docs.codeberg.org</a></li>
+<li>Contribuir al proyecto Codeberg: <a href="https://codeberg.org/Codeberg/Contributing" target="_blank">https://codeberg.org/Codeberg/Contributing</a></li>
+</ul>
 
-      <google-codelab-step
-        label="Agregar una Licencia en Codeberg"
-        duration="0"
-      >
-        <p>
-          Toda obra de software debería incluir una licencia que indique
-          claramente qué pueden (y no pueden) hacer otros usuarios con tu
-          código. Codeberg, al estar basado en Gitea, ofrece soporte para añadir
-          licencias al momento de crear un repositorio, y también puedes hacerlo
-          de forma manual para repositorios ya existentes.
-        </p>
-        <h2 is-upgraded>
-          🔧 1. Agregar licencia al crear un nuevo repositorio
-        </h2>
-        <p>Cuando creas un nuevo repositorio desde Codeberg:</p>
-        <ol type="1">
-          <li>
-            Accede a
-            <a href="https://codeberg.org" target="_blank"
-              >https://codeberg.org</a
-            >
-            y haz clic en <strong>&#34;New Repository&#34;</strong>.
-          </li>
-          <li>
-            Llena los campos requeridos (nombre, descripción, visibilidad).
-          </li>
-          <li>
-            En la sección <strong>&#34;Initialize this repository&#34;</strong>,
-            da clic en el input <strong>&#34;Choose a license&#34;</strong>.
-          </li>
-          <li>
-            Selecciona la licencia que desees (MIT, GPLv3, Apache 2.0, etc.)
-          </li>
-          <li>
-            Finaliza haciendo clic en
-            <strong>&#34;Create Repository&#34;</strong>
-          </li>
-        </ol>
-        <p>
-          Esto generará automáticamente un archivo <code>LICENSE</code> en la
-          raíz de tu proyecto.
-        </p>
-        <p>
-          ✅ Esta es la forma recomendada, ya que queda registrada desde el
-          inicio.
-        </p>
-        <h2 is-upgraded>
-          📝 2. Agregar o cambiar la licencia en un repositorio existente
-        </h2>
-        <p>
-          Si ya tienes un repositorio en Codeberg sin licencia, puedes agregarla
-          fácilmente de forma manual:
-        </p>
-        <h3 is-upgraded>Opción A – Desde la interfaz web de Codeberg</h3>
-        <ol type="1">
-          <li>Ve a tu repositorio</li>
-          <li>
-            Haz clic en
-            <strong>&#34;Add file&#34; &gt; &#34;Create new file&#34;</strong>
-          </li>
-          <li>Nombra el archivo como:</li>
-        </ol>
-        <pre><code language="language-text" class="language-text">LICENSE
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Agregar una Licencia en Codeberg" duration="0">
+        <p>Toda obra de software debería incluir una licencia que indique claramente qué pueden (y no pueden) hacer otros usuarios con tu código. Codeberg, al estar basado en Gitea, ofrece soporte para añadir licencias al momento de crear un repositorio, y también puedes hacerlo de forma manual para repositorios ya existentes.</p>
+<h2 is-upgraded>🔧 1. Agregar licencia al crear un nuevo repositorio</h2>
+<p>Cuando creas un nuevo repositorio desde Codeberg:</p>
+<ol type="1">
+<li>Accede a <a href="https://codeberg.org" target="_blank">https://codeberg.org</a> y haz clic en <strong>&#34;New Repository&#34;</strong>.</li>
+<li>Llena los campos requeridos (nombre, descripción, visibilidad).</li>
+<li>En la sección <strong>&#34;Initialize this repository&#34;</strong>, da clic en el input <strong>&#34;Choose a license&#34;</strong>.</li>
+<li>Selecciona la licencia que desees (MIT, GPLv3, Apache 2.0, etc.)</li>
+<li>Finaliza haciendo clic en <strong>&#34;Create Repository&#34;</strong></li>
+</ol>
+<p>Esto generará automáticamente un archivo <code>LICENSE</code> en la raíz de tu proyecto.</p>
+<p>✅ Esta es la forma recomendada, ya que queda registrada desde el inicio.</p>
+<h2 is-upgraded>📝 2. Agregar o cambiar la licencia en un repositorio existente</h2>
+<p>Si ya tienes un repositorio en Codeberg sin licencia, puedes agregarla fácilmente de forma manual:</p>
+<h3 is-upgraded>Opción A – Desde la interfaz web de Codeberg</h3>
+<ol type="1">
+<li>Ve a tu repositorio</li>
+<li>Haz clic en <strong>&#34;Add file&#34; &gt; &#34;Create new file&#34;</strong></li>
+<li>Nombra el archivo como:</li>
+</ol>
+<pre><code language="language-text" class="language-text">LICENSE
 </code></pre>
-        <ol type="1" start="4">
-          <li>
-            Pega el contenido de la licencia elegida puedes obtener plantillas
-            desde
-            <a href="https://choosealicense.com" target="_blank"
-              >https://choosealicense.com</a
-            >
-          </li>
-          <li>
-            Agrega un mensaje de confirmación, por ejemplo: &#34;docs: agregar
-            archivo LICENSE&#34;
-          </li>
-          <li>Haz clic en &#34;Commit changes&#34;</li>
-        </ol>
-      </google-codelab-step>
+<ol type="1" start="4">
+<li>Pega el contenido de la licencia elegida puedes obtener plantillas desde <a href="https://choosealicense.com" target="_blank">https://choosealicense.com</a></li>
+<li>Agrega un mensaje de confirmación, por ejemplo: &#34;docs: agregar archivo LICENSE&#34;</li>
+<li>Haz clic en &#34;Commit changes&#34;</li>
+</ol>
 
-      <google-codelab-step
-        label="Manejo de 
-issues"
-        duration="0"
-      >
-        <p>
-          Para comenzar con el manejo de <em>issues</em> en Codeberg, primero es
-          necesario <strong>crear un proyecto</strong> que sirva como tablero de
-          control para su seguimiento.
-        </p>
-        <h2 is-upgraded>1. Activar la opción de proyectos en el repositorio</h2>
-        <ol type="1">
-          <li>
-            Dirígete al repositorio correspondiente y accede a la
-            <strong>Configuración</strong>.<img
-              alt="Project settings"
-              src="img/4d204015a26435e1.png"
-            />
-          </li>
-          <li>
-            En el menú lateral, selecciona
-            <strong>Unidades &gt; Vista general</strong>.<img
-              alt="Unidades"
-              src="img/74a339b2a43b2cda.png"
-            />
-          </li>
-          <li>
-            Marca la casilla
-            <strong>&#34;Activar proyectos en el repositorio&#34;</strong>.<img
-              alt="Projects activation"
-              src="img/9339766e3692d2c6.png"
-            />
-          </li>
-          <li>
-            Una vez activada esta opción, aparecerá una nueva pestaña llamada
-            <strong>Proyectos</strong> en la parte superior del repositorio.<img
-              alt="New option"
-              src="img/abc633b1714f141b.png"
-            />
-          </li>
-        </ol>
-        <h2 is-upgraded>2. Crear un nuevo proyecto</h2>
-        <ol type="1">
-          <li>
-            Haz clic en <strong>&#34;Nuevo proyecto&#34;</strong> dentro de la
-            sección de proyectos.<img
-              alt="New Project"
-              src="img/20984a94daa42e21.png"
-            />
-          </li>
-          <li>
-            Completa el formulario ingresando:
-            <ul>
-              <li><strong>Nombre del proyecto</strong></li>
-              <li><strong>Descripción</strong></li>
-              <li>
-                En la opción <strong>Plantilla</strong>, selecciona
-                <strong>&#34;Kanban básico&#34;</strong>
-              </li>
-            </ul>
-            Finalmente, haz clic en
-            <strong>&#34;Crear proyecto&#34;</strong>.<img
-              alt="New Project Form"
-              src="img/f95a9a1e62d1e0f2.png"
-            />
-          </li>
-        </ol>
-        <h2 is-upgraded>Creación y gestión de <em>issues</em></h2>
-        <p>
-          Una vez creado el proyecto, el siguiente paso es registrar los
-          <em>issues</em> correspondientes. Para ello:
-        </p>
-        <ol type="1">
-          <li>
-            Accede a la pestaña <strong>Issues &gt; New Issue</strong> (<em
-              >Incidencias &gt; Nueva incidencia</em
-            >).<img alt="Nueva incidencia" src="img/5df25769dae00046.png" />
-          </li>
-          <li>
-            Completa los siguientes campos:
-            <ul>
-              <li><strong>Title</strong>: Título del <em>issue</em></li>
-              <li>
-                <strong>Description</strong>: Breve explicación del problema o
-                tarea
-              </li>
-              <li>
-                <strong>Assignees</strong>: Persona a quien se le asignará
-              </li>
-              <li>
-                <strong>Labels</strong>: Tipo de <em>issue</em> (por ejemplo:
-                <em>bug</em>, <em>enhancement</em>)
-              </li>
-              <li>
-                <strong>Projects</strong>: Tablero al que se agregará el
-                <em>issue</em>
-              </li>
-            </ul>
-            En el siguiente ejemplo, se crea un <em>issue</em> con esta
-            configuración:
-            <ul>
-              <li>Título: <em>Bug ejemplo</em></li>
-              <li>Descripción: <em>Bug descripción ejemplo</em></li>
-              <li>Asignado a: el propio autor</li>
-              <li>
-                Tablero: el proyecto recién creado para seguimiento de errores
-              </li>
-            </ul>
-            <img alt="Issue filled info" src="img/363a314f6fcb1133.png" />
-          </li>
-        </ol>
-        <aside class="warning">
-          <p>
-            ⚠️ Si no aparecen etiquetas disponibles (labels), dirígete a la
-            sección principal de Issues en tu repositorio, haz clic en el botón
-            &#34;Labels&#34;, selecciona el conjunto de etiquetas predefinido y
-            luego haz clic en &#34;Use this preset&#34; para habilitarlas.
-          </p>
-        </aside>
-        <p>
-          Una vez creado, el <em>issue</em> será visible en la lista y se
-          mostrará también dentro del tablero correspondiente:
-        </p>
-        <p class="image-container">
-          <img alt="Issue created" src="img/f5134423d5a044da.png" />
-        </p>
-        <p>El <em>issue</em> ya estará asignado al proyecto:</p>
-        <p class="image-container">
-          <img alt="Issue project" src="img/c1a0e0e7bda0a3a8.png" />
-        </p>
-        <p>
-          Cada movimiento dentro del tablero (por ejemplo, avanzar de &#34;To
-          do&#34; a &#34;In progress&#34;) se reflejará automáticamente en el
-          <em>issue</em> relacionado. Una vez que se resuelva el <em>issue</em>,
-          debe moverse a la columna <strong>Done</strong> y marcarse como
-          cerrado.
-        </p>
-        <p class="image-container">
-          <img alt="Issue Completed" src="img/aa6964b1f09af13.png" />
-        </p>
-        <p>
-          Posteriormente, se puede cerrar el <em>issue</em> seleccionando la
-          opción <strong>&#34;Close issue&#34;</strong>.
-        </p>
-        <p class="image-container">
-          <img alt="Issue closed" src="img/a4fd0ffaab7a027d.png" /><img
-            alt="Issue closed confirmation"
-            src="img/4c7b293057e69213.png"
-          />
-        </p>
-        <h2 is-upgraded>
-          Puntos recomendados para documentar los <em>issues</em>
-        </h2>
-        <p>
-          Al documentar un <em>issue</em>, se recomienda utilizar los siguientes
-          puntos para mantener un formato claro y uniforme:
-        </p>
-        <pre><code language="language-md" class="language-md">## Descripción del problema
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Manejo de 
+issues" duration="0">
+        <p>Para comenzar con el manejo de <em>issues</em> en Codeberg, primero es necesario <strong>crear un proyecto</strong> que sirva como tablero de control para su seguimiento.</p>
+<h2 is-upgraded>1. Activar la opción de proyectos en el repositorio</h2>
+<ol type="1">
+<li>Dirígete al repositorio correspondiente y accede a la <strong>Configuración</strong>.<img alt="Project settings" src="img/4d204015a26435e1.png"></li>
+<li>En el menú lateral, selecciona <strong>Unidades &gt; Vista general</strong>.<img alt="Unidades" src="img/74a339b2a43b2cda.png"></li>
+<li>Marca la casilla <strong>&#34;Activar proyectos en el repositorio&#34;</strong>.<img alt="Projects activation" src="img/9339766e3692d2c6.png"></li>
+<li>Una vez activada esta opción, aparecerá una nueva pestaña llamada <strong>Proyectos</strong> en la parte superior del repositorio.<img alt="New option" src="img/abc633b1714f141b.png"></li>
+</ol>
+<h2 is-upgraded>2. Crear un nuevo proyecto</h2>
+<ol type="1">
+<li>Haz clic en <strong>&#34;Nuevo proyecto&#34;</strong> dentro de la sección de proyectos.<img alt="New Project" src="img/20984a94daa42e21.png"></li>
+<li>Completa el formulario ingresando:<ul>
+<li><strong>Nombre del proyecto</strong></li>
+<li><strong>Descripción</strong></li>
+<li>En la opción <strong>Plantilla</strong>, selecciona <strong>&#34;Kanban básico&#34;</strong></li>
+</ul>
+Finalmente, haz clic en <strong>&#34;Crear proyecto&#34;</strong>.<img alt="New Project Form" src="img/f95a9a1e62d1e0f2.png"></li>
+</ol>
+<h2 is-upgraded>Creación y gestión de <em>issues</em></h2>
+<p>Una vez creado el proyecto, el siguiente paso es registrar los <em>issues</em> correspondientes. Para ello:</p>
+<ol type="1">
+<li>Accede a la pestaña <strong>Issues &gt; New Issue</strong> (<em>Incidencias &gt; Nueva incidencia</em>).<img alt="Nueva incidencia" src="img/5df25769dae00046.png"></li>
+<li>Completa los siguientes campos:<ul>
+<li><strong>Title</strong>: Título del <em>issue</em></li>
+<li><strong>Description</strong>: Breve explicación del problema o tarea</li>
+<li><strong>Assignees</strong>: Persona a quien se le asignará</li>
+<li><strong>Labels</strong>: Tipo de <em>issue</em> (por ejemplo: <em>bug</em>, <em>enhancement</em>)</li>
+<li><strong>Projects</strong>: Tablero al que se agregará el <em>issue</em></li>
+</ul>
+En el siguiente ejemplo, se crea un <em>issue</em> con esta configuración:<ul>
+<li>Título: <em>Bug ejemplo</em></li>
+<li>Descripción: <em>Bug descripción ejemplo</em></li>
+<li>Asignado a: el propio autor</li>
+<li>Tablero: el proyecto recién creado para seguimiento de errores</li>
+</ul>
+<img alt="Issue filled info" src="img/363a314f6fcb1133.png"></li>
+</ol>
+<aside class="warning"><p> ⚠️ Si no aparecen etiquetas disponibles (labels), dirígete a la sección principal de Issues en tu repositorio, haz clic en el botón &#34;Labels&#34;, selecciona el conjunto de etiquetas predefinido y luego haz clic en &#34;Use this preset&#34; para habilitarlas. </p>
+</aside>
+<p>Una vez creado, el <em>issue</em> será visible en la lista y se mostrará también dentro del tablero correspondiente:</p>
+<p class="image-container"><img alt="Issue created" src="img/f5134423d5a044da.png"></p>
+<p>El <em>issue</em> ya estará asignado al proyecto:</p>
+<p class="image-container"><img alt="Issue project" src="img/c1a0e0e7bda0a3a8.png"></p>
+<p>Cada movimiento dentro del tablero (por ejemplo, avanzar de &#34;To do&#34; a &#34;In progress&#34;) se reflejará automáticamente en el <em>issue</em> relacionado. Una vez que se resuelva el <em>issue</em>, debe moverse a la columna <strong>Done</strong> y marcarse como cerrado.</p>
+<p class="image-container"><img alt="Issue Completed" src="img/aa6964b1f09af13.png"></p>
+<p>Posteriormente, se puede cerrar el <em>issue</em> seleccionando la opción <strong>&#34;Close issue&#34;</strong>.</p>
+<p class="image-container"><img alt="Issue closed" src="img/a4fd0ffaab7a027d.png"><img alt="Issue closed confirmation" src="img/4c7b293057e69213.png"></p>
+<h2 is-upgraded>Puntos recomendados para documentar los <em>issues</em></h2>
+<p>Al documentar un <em>issue</em>, se recomienda utilizar los siguientes puntos para mantener un formato claro y uniforme:</p>
+<pre><code language="language-md" class="language-md">## Descripción del problema
 Breve descripción del problema que se ha identificado y se ha resuelto.
 
 ## Detalles técnicos
@@ -654,542 +315,207 @@ Para reproducir el problema se deben seguir los siguientes pasos:
 ## Consideraciones
 - Cosas que se deben tomar en cuenta para evitar futuros problemas similares
 </code></pre>
-        <p>
-          A continuación se muestran ejemplos de un <em>issue</em> documentado y
-          cerrado exitosamente:
-        </p>
-        <p class="image-container">
-          <img alt="Issue example 1" src="img/83bee68cdf94b12b.png" /><br /><img
-            alt="Issue example 2"
-            src="img/de6bc60baf88cefe.png"
-          />
-        </p>
-        <aside class="warning">
-          <p>
-            ⚠️ Aunque el ejemplo proviene de GitHub, lo importante es mantener
-            una estructura clara en los comentarios y documentación del issue.
-          </p>
-        </aside>
-      </google-codelab-step>
+<p>A continuación se muestran ejemplos de un <em>issue</em> documentado y cerrado exitosamente:</p>
+<p class="image-container"><img alt="Issue example 1" src="img/83bee68cdf94b12b.png"><br><img alt="Issue example 2" src="img/de6bc60baf88cefe.png"></p>
+<aside class="warning"><p> ⚠️ Aunque el ejemplo proviene de GitHub, lo importante es mantener una estructura clara en los comentarios y documentación del issue. </p>
+</aside>
 
-      <google-codelab-step label="Actividad Práctica" duration="0">
-        <p>💡 <strong>Migración de un repositorio a Codeberg</strong></p>
-        <ol type="1">
-          <li>
-            Selecciona un repositorio tuyo (puede ser de GitHub, GitLab o local)
-          </li>
-          <li>
-            Sube ese repositorio a Codeberg:
-            <ul>
-              <li>Crea uno nuevo</li>
-              <li>Agrega Codeberg como nuevo <code>remote</code>:</li>
-            </ul>
-          </li>
-        </ol>
-        <pre><code language="language-bash" class="language-bash">git remote add codeberg https://codeberg.org/usuario/repositorio.git
-git push codeberg main
-</code></pre>
-        <ol type="1" start="3">
-          <li>
-            Documenta en un archivo PDF:
-            <ul>
-              <li>
-                Capturas de pantalla del repositorio original y de Codeberg
-              </li>
-              <li>Comparación de ramas, commits, releases, CI, etc.</li>
-              <li>Enlaces a ambos repositorios</li>
-            </ul>
-          </li>
-        </ol>
-        <aside class="warning">
-          <p>
-            ⚠️ Recuerda siempre verificar tus configuraciones de ramas, permisos
-            y commits antes de subir a producción.
-          </p>
-        </aside>
-      </google-codelab-step>
 
-      <google-codelab-step
-        label="Control de versiones - Uso Básico de Git"
-        duration="0"
-      >
-        <p class="image-container">
-          <img alt="Control de versiones" src="img/a9cae5239d4023fb.png" />
-        </p>
-        <p>
-          El control de versiones es una práctica fundamental en el desarrollo
-          de software moderno, ya que permite a los equipos gestionar y rastrear
-          los cambios en el código fuente a lo largo del tiempo. Git, una de las
-          herramientas más populares para el control de versiones, ofrece una
-          serie de funcionalidades que facilitan la colaboración entre
-          desarrolladores, la gestión de proyectos y la recuperación de
-          versiones anteriores del código.
-        </p>
-        <p>
-          En esta sección aprenderás los fundamentos para trabajar con Git en tu
-          entorno local y conectarlo con plataformas como GitHub, GitLab o
-          Bitbucket. Esta base te permitirá mantener un historial claro de tus
-          cambios y colaborar efectivamente en proyectos de desarrollo.
-        </p>
-        <h2 is-upgraded>1. Configuración Inicial</h2>
-        <p>
-          Antes de comenzar a trabajar con Git, debes configurar tus
-          credenciales de usuario. Esto es importante porque cada cambio que
-          registres en un repositorio tendrá tu nombre y correo asociado.
-        </p>
-        <pre><code language="language-bash" class="language-bash">git config --global user.name &#34;Tu Nombre&#34;
+      </google-codelab-step>
+    
+      <google-codelab-step label="Control de versiones - Uso Básico de Git" duration="0">
+        <p class="image-container"><img alt="Control de versiones" src="img/a9cae5239d4023fb.png"></p>
+<p>El control de versiones es una práctica fundamental en el desarrollo de software moderno, ya que permite a los equipos gestionar y rastrear los cambios en el código fuente a lo largo del tiempo. Git, una de las herramientas más populares para el control de versiones, ofrece una serie de funcionalidades que facilitan la colaboración entre desarrolladores, la gestión de proyectos y la recuperación de versiones anteriores del código.</p>
+<p>En esta sección aprenderás los fundamentos para trabajar con Git en tu entorno local y conectarlo con plataformas como GitHub, GitLab o Bitbucket. Esta base te permitirá mantener un historial claro de tus cambios y colaborar efectivamente en proyectos de desarrollo.</p>
+<h2 is-upgraded>1. Configuración Inicial</h2>
+<p>Antes de comenzar a trabajar con Git, debes configurar tus credenciales de usuario. Esto es importante porque cada cambio que registres en un repositorio tendrá tu nombre y correo asociado.</p>
+<pre><code language="language-bash" class="language-bash">git config --global user.name &#34;Tu Nombre&#34;
 git config --global user.email &#34;tu.email@ejemplo.com&#34;
 </code></pre>
-        <p>Verifica la configuración actual con:</p>
-        <pre><code language="language-bash" class="language-bash">git config --list
+<p>Verifica la configuración actual con:</p>
+<pre><code language="language-bash" class="language-bash">git config --list
 </code></pre>
-        <p>
-          💡 Usa <code>--global</code> para que la configuración aplique a todos
-          tus proyectos. Si quieres una configuración específica para un solo
-          repositorio, omite el flag <code>--global</code>.
-        </p>
-        <h2 is-upgraded>2. Inicializar un Repositorio</h2>
-        <p>
-          Para empezar a trabajar con Git en un proyecto local, navega a la
-          carpeta del proyecto y ejecuta:
-        </p>
-        <pre><code language="language-bash" class="language-bash">git init
+<p>💡 Usa <code>--global</code> para que la configuración aplique a todos tus proyectos. Si quieres una configuración específica para un solo repositorio, omite el flag <code>--global</code>.</p>
+<h2 is-upgraded>2. Inicializar un Repositorio</h2>
+<p>Para empezar a trabajar con Git en un proyecto local, navega a la carpeta del proyecto y ejecuta:</p>
+<pre><code language="language-bash" class="language-bash">git init
 </code></pre>
-        <p>
-          Esto crea una carpeta oculta <code>.git/</code> donde se almacenará
-          toda la información de versiones.
-        </p>
-        <h2 is-upgraded>
-          3. Agregar un Repositorio Remoto (GitHub u otra forja)
-        </h2>
-        <p>
-          Una vez creado tu repositorio local, puedes conectarlo con un
-          repositorio remoto (por ejemplo, de GitHub). Primero, crea un nuevo
-          repositorio desde la plataforma que prefieras (GitHub, GitLab, etc.),
-          <strong>sin seleccionar la opción de crear README ni </strong>
-        </p>
-        <p>
-          <strong><code>.gitignore</code></strong>
-        </p>
-        <p><strong> si ya iniciaste el repositorio localmente.</strong></p>
-        <p>Luego, enlaza tu repositorio local con el remoto:</p>
-        <pre><code language="language-bash" class="language-bash">git remote add origin https://github.com/usuario/nombre-repo.git
+<p>Esto crea una carpeta oculta <code>.git/</code> donde se almacenará toda la información de versiones.</p>
+<h2 is-upgraded>3. Agregar un Repositorio Remoto (GitHub u otra forja)</h2>
+<p>Una vez creado tu repositorio local, puedes conectarlo con un repositorio remoto (por ejemplo, de GitHub). Primero, crea un nuevo repositorio desde la plataforma que prefieras (GitHub, GitLab, etc.), <strong>sin seleccionar la opción de crear README ni </strong></p>
+<p><strong><code>.gitignore</code></strong></p>
+<p><strong> si ya iniciaste el repositorio localmente.</strong></p>
+<p>Luego, enlaza tu repositorio local con el remoto:</p>
+<pre><code language="language-bash" class="language-bash">git remote add origin https://github.com/usuario/nombre-repo.git
 </code></pre>
-        <p>Verifica que se haya agregado correctamente:</p>
-        <pre><code language="language-bash" class="language-bash">git remote -v
+<p>Verifica que se haya agregado correctamente:</p>
+<pre><code language="language-bash" class="language-bash">git remote -v
 </code></pre>
-        <h2 is-upgraded>4. Flujo de Trabajo Básico en Git</h2>
-        <p>
-          A continuación, se describe el flujo más común para trabajar con Git
-          en el día a día:
-        </p>
-        <h3 is-upgraded>a. Verificar el estado del repositorio</h3>
-        <pre><code language="language-bash" class="language-bash">git status
+<h2 is-upgraded>4. Flujo de Trabajo Básico en Git</h2>
+<p>A continuación, se describe el flujo más común para trabajar con Git en el día a día:</p>
+<h3 is-upgraded>a. Verificar el estado del repositorio</h3>
+<pre><code language="language-bash" class="language-bash">git status
 </code></pre>
-        <h3 is-upgraded>
-          b. Agregar archivos al área de preparación (staging)
-        </h3>
-        <pre><code language="language-bash" class="language-bash">git add .
+<h3 is-upgraded>b. Agregar archivos al área de preparación (staging)</h3>
+<pre><code language="language-bash" class="language-bash">git add .
 </code></pre>
-        <p>Puedes agregar archivos específicos con:</p>
-        <pre><code language="language-bash" class="language-bash">git add archivo.js
+<p>Puedes agregar archivos específicos con:</p>
+<pre><code language="language-bash" class="language-bash">git add archivo.js
 </code></pre>
-        <h3 is-upgraded>c. Hacer un commit</h3>
-        <pre><code language="language-bash" class="language-bash">git commit -m &#34;feat: agregar funcionalidad inicial&#34;
+<h3 is-upgraded>c. Hacer un commit</h3>
+<pre><code language="language-bash" class="language-bash">git commit -m &#34;feat: agregar funcionalidad inicial&#34;
 </code></pre>
-        <p>
-          💡 Usa mensajes significativos siguiendo una convención clara (por
-          ejemplo,
-          <a
-            href="https://www.conventionalcommits.org/es/v1.0.0/"
-            target="_blank"
-            >Conventional Commits</a
-          >) para mantener un historial legible.
-        </p>
-        <h3 is-upgraded>d. Subir cambios al repositorio remoto</h3>
-        <pre><code language="language-bash" class="language-bash">git push origin main
+<p>💡 Usa mensajes significativos siguiendo una convención clara (por ejemplo, <a href="https://www.conventionalcommits.org/es/v1.0.0/" target="_blank">Conventional Commits</a>) para mantener un historial legible.</p>
+<h3 is-upgraded>d. Subir cambios al repositorio remoto</h3>
+<pre><code language="language-bash" class="language-bash">git push origin main
 </code></pre>
-        <p>
-          Si estás usando otra rama como <code>develop</code>, reemplaza
-          <code>main</code> por el nombre de la rama correspondiente.
-        </p>
-        <h3 is-upgraded>e. Obtener los últimos cambios del remoto</h3>
-        <pre><code language="language-bash" class="language-bash">git pull origin main
+<p>Si estás usando otra rama como <code>develop</code>, reemplaza <code>main</code> por el nombre de la rama correspondiente.</p>
+<h3 is-upgraded>e. Obtener los últimos cambios del remoto</h3>
+<pre><code language="language-bash" class="language-bash">git pull origin main
 </code></pre>
-        <p>
-          Esto es útil cuando varios colaboradores están trabajando en el mismo
-          proyecto.
-        </p>
-        <h2 is-upgraded>5. Crear y Cambiar de Rama</h2>
-        <p>
-          Trabajar con ramas permite aislar funcionalidades y mantener la rama
-          principal libre de código en desarrollo.
-        </p>
-        <pre><code language="language-bash" class="language-bash">git checkout -b feature/nueva-funcionalidad
+<p>Esto es útil cuando varios colaboradores están trabajando en el mismo proyecto.</p>
+<h2 is-upgraded>5. Crear y Cambiar de Rama</h2>
+<p>Trabajar con ramas permite aislar funcionalidades y mantener la rama principal libre de código en desarrollo.</p>
+<pre><code language="language-bash" class="language-bash">git checkout -b feature/nueva-funcionalidad
 </code></pre>
-        <p>Para cambiar entre ramas:</p>
-        <pre><code language="language-bash" class="language-bash">git checkout develop
+<p>Para cambiar entre ramas:</p>
+<pre><code language="language-bash" class="language-bash">git checkout develop
 </code></pre>
-        <h2 is-upgraded>6. Subir una Nueva Rama al Remoto</h2>
-        <p>
-          Una vez creada una nueva rama local y añadidos tus cambios, debes
-          subirla al repositorio remoto:
-        </p>
-        <pre><code language="language-bash" class="language-bash">git push -u origin feature/nueva-funcionalidad
+<h2 is-upgraded>6. Subir una Nueva Rama al Remoto</h2>
+<p>Una vez creada una nueva rama local y añadidos tus cambios, debes subirla al repositorio remoto:</p>
+<pre><code language="language-bash" class="language-bash">git push -u origin feature/nueva-funcionalidad
 </code></pre>
-        <p>
-          El flag <code>-u</code> establece un &#34;seguimiento&#34; entre la
-          rama local y la rama remota para futuros <code>git push</code> sin
-          argumentos.
-        </p>
-        <h2 is-upgraded>7. Visualizar el Historial de Commits</h2>
-        <p>Puedes ver el historial con:</p>
-        <pre><code language="language-bash" class="language-bash">git log --oneline --graph --all
+<p>El flag <code>-u</code> establece un &#34;seguimiento&#34; entre la rama local y la rama remota para futuros <code>git push</code> sin argumentos.</p>
+<h2 is-upgraded>7. Visualizar el Historial de Commits</h2>
+<p>Puedes ver el historial con:</p>
+<pre><code language="language-bash" class="language-bash">git log --oneline --graph --all
 </code></pre>
-        <p>
-          Este comando muestra los commits de forma compacta y visualiza la
-          estructura de ramas.
-        </p>
-        <h2 is-upgraded>8. Clonar un Repositorio Existente</h2>
-        <p>Si deseas trabajar con un repositorio existente desde cero, usa:</p>
-        <pre><code language="language-bash" class="language-bash">git clone https://github.com/usuario/nombre-repo.git
+<p>Este comando muestra los commits de forma compacta y visualiza la estructura de ramas.</p>
+<h2 is-upgraded>8. Clonar un Repositorio Existente</h2>
+<p>Si deseas trabajar con un repositorio existente desde cero, usa:</p>
+<pre><code language="language-bash" class="language-bash">git clone https://github.com/usuario/nombre-repo.git
 </code></pre>
-        <p>
-          Esto descargará todos los archivos del proyecto, incluidas sus
-          versiones anteriores.
-        </p>
-        <h2 is-upgraded>9. Buenas Prácticas</h2>
-        <ul>
-          <li>
-            ✅ <strong>Haz commits frecuentemente:</strong> Documenta cambios
-            pequeños y coherentes.
-          </li>
-          <li>
-            🌿 <strong>Trabaja con ramas:</strong> Nunca desarrolles
-            directamente en <code>main</code>.
-          </li>
-          <li>
-            🔄 <strong>Sincroniza frecuentemente:</strong> Usa
-            <code>git pull</code> para evitar conflictos.
-          </li>
-          <li>
-            🧹 <strong>Agrega un </strong
-            ><strong><code>.gitignore</code></strong
-            ><strong>:</strong> Evita subir archivos innecesarios como
-            <code>node_modules</code> o <code>.env</code>.
-          </li>
-        </ul>
-      </google-codelab-step>
+<p>Esto descargará todos los archivos del proyecto, incluidas sus versiones anteriores.</p>
+<h2 is-upgraded>9. Buenas Prácticas</h2>
+<ul>
+<li>✅ <strong>Haz commits frecuentemente:</strong> Documenta cambios pequeños y coherentes.</li>
+<li>🌿 <strong>Trabaja con ramas:</strong> Nunca desarrolles directamente en <code>main</code>.</li>
+<li>🔄 <strong>Sincroniza frecuentemente:</strong> Usa <code>git pull</code> para evitar conflictos.</li>
+<li>🧹 <strong>Agrega un </strong><strong><code>.gitignore</code></strong><strong>:</strong> Evita subir archivos innecesarios como <code>node_modules</code> o <code>.env</code>.</li>
+</ul>
 
+
+      </google-codelab-step>
+    
       <google-codelab-step label="Gitflow" duration="0">
-        <p>
-          Gitflow es un modelo de ramificación (branching model) que proporciona
-          un enfoque estructurado para el desarrollo de software utilizando Git.
-          Este flujo de trabajo es especialmente útil en proyectos que requieren
-          un ciclo de vida de desarrollo más complejo, como aquellos que
-          involucran múltiples versiones y lanzamientos. Gitflow ayuda a los
-          equipos a gestionar el desarrollo de nuevas características,
-          correcciones de errores y lanzamientos de manera organizada y
-          eficiente.
-        </p>
-        <p class="image-container">
-          <img alt="Gitflow" src="img/d5bc032b4d559760.svg" />
-        </p>
-        <h2 is-upgraded>Estructura de Gitflow</h2>
-        <p>
-          El modelo Gitflow se basa en dos ramas principales y varias ramas de
-          soporte:
-        </p>
-        <ol type="1">
-          <li>
-            <strong>Rama main (o master):</strong> Esta rama contiene el código
-            de producción. Cada commit en esta rama representa una versión
-            estable del software que se puede desplegar.
-          </li>
-          <li>
-            <strong>Rama develop:</strong> Esta rama es donde se integra el
-            trabajo de desarrollo. Contiene las últimas características y
-            correcciones que están listas para ser probadas antes de ser
-            lanzadas a producción.
-          </li>
-          <li>
-            <strong>Ramas de características (feature):</strong> Se crean a
-            partir de la rama develop para desarrollar nuevas funcionalidades.
-            Una vez que la característica está completa, se fusiona de nuevo en
-            develop.
-          </li>
-          <li>
-            <strong>Ramas de corrección de errores (hotfix)</strong>: Se crean a
-            partir de la rama main para abordar problemas críticos en
-            producción. Después de realizar la corrección, se fusionan tanto en
-            main como en develop.
-          </li>
-          <li>
-            <strong>Ramas de lanzamiento (release):</strong> Se crean a partir
-            de develop cuando se está listo para preparar una nueva versión.
-            Permiten realizar pruebas finales y correcciones antes de fusionar
-            los cambios en main.
-          </li>
-        </ol>
-        <h2 is-upgraded>Flujo de Trabajo de Gitflow</h2>
-        <p>
-          A continuación, se detalla el flujo de trabajo de Gitflow, dividido en
-          tres secciones principales: trabajo con características (features),
-          trabajo con lanzamientos (releases) y trabajo con correcciones de
-          errores (hotfixes).
-        </p>
-        <h3 is-upgraded>1. Trabajo con Features</h3>
-        <p>
-          El desarrollo de nuevas características se realiza a través de ramas
-          de características (feature branches). El flujo de trabajo es el
-          siguiente:
-        </p>
-        <ol type="1">
-          <li>
-            <strong>Crear la rama </strong><strong><code>develop</code></strong
-            ><strong> a partir de </strong><strong><code>main</code></strong
-            >: Si aún no existe, inicializa la rama <code>develop</code> a
-            partir de <code>main</code>:
-            <pre><code language="language-bash" class="language-bash">git checkout main
+        <p>Gitflow es un modelo de ramificación (branching model) que proporciona un enfoque estructurado para el desarrollo de software utilizando Git. Este flujo de trabajo es especialmente útil en proyectos que requieren un ciclo de vida de desarrollo más complejo, como aquellos que involucran múltiples versiones y lanzamientos. Gitflow ayuda a los equipos a gestionar el desarrollo de nuevas características, correcciones de errores y lanzamientos de manera organizada y eficiente.</p>
+<p class="image-container"><img alt="Gitflow" src="img/d5bc032b4d559760.svg"></p>
+<h2 is-upgraded>Estructura de Gitflow</h2>
+<p>El modelo Gitflow se basa en dos ramas principales y varias ramas de soporte:</p>
+<ol type="1">
+<li><strong>Rama main (o master):</strong> Esta rama contiene el código de producción. Cada commit en esta rama representa una versión estable del software que se puede desplegar.</li>
+<li><strong>Rama develop:</strong> Esta rama es donde se integra el trabajo de desarrollo. Contiene las últimas características y correcciones que están listas para ser probadas antes de ser lanzadas a producción.</li>
+<li><strong>Ramas de características (feature):</strong> Se crean a partir de la rama develop para desarrollar nuevas funcionalidades. Una vez que la característica está completa, se fusiona de nuevo en develop.</li>
+<li><strong>Ramas de corrección de errores (hotfix)</strong>: Se crean a partir de la rama main para abordar problemas críticos en producción. Después de realizar la corrección, se fusionan tanto en main como en develop.</li>
+<li><strong>Ramas de lanzamiento (release):</strong> Se crean a partir de develop cuando se está listo para preparar una nueva versión. Permiten realizar pruebas finales y correcciones antes de fusionar los cambios en main.</li>
+</ol>
+<h2 is-upgraded>Flujo de Trabajo de Gitflow</h2>
+<p>A continuación, se detalla el flujo de trabajo de Gitflow, dividido en tres secciones principales: trabajo con características (features), trabajo con lanzamientos (releases) y trabajo con correcciones de errores (hotfixes).</p>
+<h3 is-upgraded>1. Trabajo con Features</h3>
+<p>El desarrollo de nuevas características se realiza a través de ramas de características (feature branches). El flujo de trabajo es el siguiente:</p>
+<ol type="1">
+<li><strong>Crear la rama </strong><strong><code>develop</code></strong><strong> a partir de </strong><strong><code>main</code></strong>: Si aún no existe, inicializa la rama <code>develop</code> a partir de <code>main</code>:<pre><code language="language-bash" class="language-bash">git checkout main
 git checkout -b develop
 </code></pre>
-          </li>
-          <li>
-            <strong>Acceder a </strong><strong><code>develop</code></strong
-            ><strong> y crear una rama de características</strong>: Cuando se
-            comienza a trabajar en una nueva característica, crea una rama de
-            características a partir de <code>develop</code>:
-            <pre><code language="language-bash" class="language-bash">git checkout develop
+</li>
+<li><strong>Acceder a </strong><strong><code>develop</code></strong><strong> y crear una rama de características</strong>: Cuando se comienza a trabajar en una nueva característica, crea una rama de características a partir de <code>develop</code>:<pre><code language="language-bash" class="language-bash">git checkout develop
 git checkout -b feature/nueva-caracteristica
 </code></pre>
-          </li>
-          <li>
-            <strong>Desarrollar la característica</strong>: Realiza los cambios
-            necesarios en la nueva rama. Asegúrate de hacer commits regulares
-            para mantener un historial claro.
-          </li>
-          <li>
-            <strong>Crear la Pull Request</strong>: Una vez que la
-            característica está completa y probada, crea un Pull Request (PR) en
-            la plataforma de gestión de código (como GitHub, GitLab o Bitbucket)
-            para solicitar la revisión y fusión de la rama de características en
-            <code>develop</code>. Esto permite que otros miembros del equipo
-            revisen el código y realicen comentarios antes de la fusión.
-          </li>
-          <li>
-            <strong>Fusionar la característica a </strong
-            ><strong><code>develop</code></strong
-            >: Después de que el Pull Request ha sido revisado y aprobado, se
-            puede fusionar en <code>develop</code>. Esto se puede hacer a través
-            de la interfaz de la plataforma de gestión de código, lo que
-            garantiza que se mantenga un registro claro de los cambios.
-          </li>
-        </ol>
-        <h3 is-upgraded>2. Trabajo con Releases</h3>
-        <p>
-          El proceso de lanzamiento de nuevas versiones del software se gestiona
-          a través de ramas de lanzamiento (release branches). El flujo de
-          trabajo es el siguiente:
-        </p>
-        <ol type="1">
-          <li>
-            <strong>Acceder a </strong><strong><code>develop</code></strong
-            >: Asegúrate de estar en la rama <code>develop</code>:
-            <pre><code language="language-bash" class="language-bash">git checkout develop
+</li>
+<li><strong>Desarrollar la característica</strong>: Realiza los cambios necesarios en la nueva rama. Asegúrate de hacer commits regulares para mantener un historial claro.</li>
+<li><strong>Crear la Pull Request</strong>: Una vez que la característica está completa y probada, crea un Pull Request (PR) en la plataforma de gestión de código (como GitHub, GitLab o Bitbucket) para solicitar la revisión y fusión de la rama de características en <code>develop</code>. Esto permite que otros miembros del equipo revisen el código y realicen comentarios antes de la fusión.</li>
+<li><strong>Fusionar la característica a </strong><strong><code>develop</code></strong>: Después de que el Pull Request ha sido revisado y aprobado, se puede fusionar en <code>develop</code>. Esto se puede hacer a través de la interfaz de la plataforma de gestión de código, lo que garantiza que se mantenga un registro claro de los cambios.</li>
+</ol>
+<h3 is-upgraded>2. Trabajo con Releases</h3>
+<p>El proceso de lanzamiento de nuevas versiones del software se gestiona a través de ramas de lanzamiento (release branches). El flujo de trabajo es el siguiente:</p>
+<ol type="1">
+<li><strong>Acceder a </strong><strong><code>develop</code></strong>: Asegúrate de estar en la rama <code>develop</code>:<pre><code language="language-bash" class="language-bash">git checkout develop
 </code></pre>
-          </li>
-          <li>
-            <strong>Crear la rama de lanzamiento a partir de </strong
-            ><strong><code>develop</code></strong
-            >: Cuando se está listo para preparar una nueva versión, crea una
-            rama de lanzamiento:
-            <pre><code language="language-bash" class="language-bash">git checkout -b release/v1.0.0
+</li>
+<li><strong>Crear la rama de lanzamiento a partir de </strong><strong><code>develop</code></strong>: Cuando se está listo para preparar una nueva versión, crea una rama de lanzamiento:<pre><code language="language-bash" class="language-bash">git checkout -b release/v1.0.0
 </code></pre>
-          </li>
-          <li>
-            <strong>Preparar el lanzamiento</strong>: Realiza pruebas finales y
-            correcciones en la rama de lanzamiento. Asegúrate de que todo esté
-            listo para la producción.
-          </li>
-          <li>
-            <strong>Crear la Pull Request para incorporar los cambios a </strong
-            ><strong><code>main</code></strong
-            >: Una vez que el lanzamiento está listo, crea un Pull Request para
-            fusionar la rama de lanzamiento en <code>main</code>.
-          </li>
-          <li>
-            <strong>Fusionar el lanzamiento a </strong
-            ><strong><code>main</code></strong
-            >: Después de que el Pull Request ha sido revisado y aprobado, se
-            puede fusionar en <code>main</code>. Esto representa la nueva
-            versión de producción.
-          </li>
-          <li>
-            <strong>Etiquetar la nueva versión de producción</strong>: Después
-            de fusionar, etiqueta la nueva versión en <code>main</code>:
-            <pre><code language="language-bash" class="language-bash">git checkout main
+</li>
+<li><strong>Preparar el lanzamiento</strong>: Realiza pruebas finales y correcciones en la rama de lanzamiento. Asegúrate de que todo esté listo para la producción.</li>
+<li><strong>Crear la Pull Request para incorporar los cambios a </strong><strong><code>main</code></strong>: Una vez que el lanzamiento está listo, crea un Pull Request para fusionar la rama de lanzamiento en <code>main</code>.</li>
+<li><strong>Fusionar el lanzamiento a </strong><strong><code>main</code></strong>: Después de que el Pull Request ha sido revisado y aprobado, se puede fusionar en <code>main</code>. Esto representa la nueva versión de producción.</li>
+<li><strong>Etiquetar la nueva versión de producción</strong>: Después de fusionar, etiqueta la nueva versión en <code>main</code>:<pre><code language="language-bash" class="language-bash">git checkout main
 git tag -a v1.0.0 -m &#34;Lanzamiento de la versión 1.0.0&#34;
 </code></pre>
-          </li>
-          <li>
-            <strong>Crear la Pull Request para incorporar los cambios a </strong
-            ><strong><code>develop</code></strong
-            >: Crea un Pull Request para fusionar la rama de lanzamiento de
-            nuevo en <code>develop</code>, asegurando que los cambios de la
-            versión se integren en el flujo de desarrollo.
-          </li>
-          <li>
-            <strong>Fusionar el lanzamiento a </strong
-            ><strong><code>develop</code></strong
-            >: Después de que el Pull Request ha sido revisado y aprobado, se
-            puede fusionar en <code>develop</code>.
-          </li>
-        </ol>
-        <h3 is-upgraded>3. Trabajo con Ramas de Corrección de Errores</h3>
-        <p>
-          Las correcciones de errores críticos en producción se gestionan a
-          través de ramas de corrección de errores (hotfix branches). El flujo
-          de trabajo es el siguiente:
-        </p>
-        <ol type="1">
-          <li>
-            <strong>Acceder a </strong><strong><code>main</code></strong
-            >: Asegúrate de estar en la rama <code>main</code>:
-            <pre><code language="language-bash" class="language-bash">git checkout main
+</li>
+<li><strong>Crear la Pull Request para incorporar los cambios a </strong><strong><code>develop</code></strong>: Crea un Pull Request para fusionar la rama de lanzamiento de nuevo en <code>develop</code>, asegurando que los cambios de la versión se integren en el flujo de desarrollo.</li>
+<li><strong>Fusionar el lanzamiento a </strong><strong><code>develop</code></strong>: Después de que el Pull Request ha sido revisado y aprobado, se puede fusionar en <code>develop</code>.</li>
+</ol>
+<h3 is-upgraded>3. Trabajo con Ramas de Corrección de Errores</h3>
+<p>Las correcciones de errores críticos en producción se gestionan a través de ramas de corrección de errores (hotfix branches). El flujo de trabajo es el siguiente:</p>
+<ol type="1">
+<li><strong>Acceder a </strong><strong><code>main</code></strong>: Asegúrate de estar en la rama <code>main</code>:<pre><code language="language-bash" class="language-bash">git checkout main
 </code></pre>
-          </li>
-          <li>
-            <strong>Crear la rama de corrección de errores</strong>: Cuando se
-            encuentra un error crítico en producción, crea una rama de
-            corrección de errores a partir de <code>main</code>:
-            <pre><code language="language-bash" class="language-bash">git checkout -b hotfix/correccion-critica
+</li>
+<li><strong>Crear la rama de corrección de errores</strong>: Cuando se encuentra un error crítico en producción, crea una rama de corrección de errores a partir de <code>main</code>:<pre><code language="language-bash" class="language-bash">git checkout -b hotfix/correccion-critica
 </code></pre>
-          </li>
-          <li>
-            <strong>Corregir los errores</strong>: Realiza los cambios
-            necesarios para corregir el error.
-          </li>
-          <li>
-            <strong
-              >Crear la Pull Request para incorporar las correcciones a </strong
-            ><strong><code>main</code></strong
-            >: Una vez que la corrección está completa, crea un Pull Request
-            para fusionar la rama de corrección de errores en <code>main</code>.
-          </li>
-          <li>
-            <strong>Fusionar la corrección a </strong
-            ><strong><code>main</code></strong
-            >: Después de que el Pull Request ha sido revisado y aprobado, se
-            puede fusionar en <code>main</code>. Esto actualiza la versión de
-            producción con la corrección.
-          </li>
-          <li>
-            <strong>Etiquetar la nueva versión de producción</strong>: Después
-            de fusionar, etiqueta la nueva versión en <code>main</code>:
-            <pre><code language="language-bash" class="language-bash">git checkout main
+</li>
+<li><strong>Corregir los errores</strong>: Realiza los cambios necesarios para corregir el error.</li>
+<li><strong>Crear la Pull Request para incorporar las correcciones a </strong><strong><code>main</code></strong>: Una vez que la corrección está completa, crea un Pull Request para fusionar la rama de corrección de errores en <code>main</code>.</li>
+<li><strong>Fusionar la corrección a </strong><strong><code>main</code></strong>: Después de que el Pull Request ha sido revisado y aprobado, se puede fusionar en <code>main</code>. Esto actualiza la versión de producción con la corrección.</li>
+<li><strong>Etiquetar la nueva versión de producción</strong>: Después de fusionar, etiqueta la nueva versión en <code>main</code>:<pre><code language="language-bash" class="language-bash">git checkout main
 git tag -a v1.0.1 -m &#34;Corrección crítica en la versión 1.0.1&#34;
 </code></pre>
-          </li>
-          <li>
-            <strong
-              >Crear la Pull Request para incorporar las correcciones a </strong
-            ><strong><code>develop</code></strong
-            >: Crea un Pull Request para fusionar la rama de corrección de
-            errores de nuevo en <code>develop</code>, asegurando que los cambios
-            de la corrección se integren en el flujo de desarrollo.
-          </li>
-          <li>
-            <strong>Fusionar las correcciones a </strong
-            ><strong><code>develop</code></strong
-            >: Después de que el Pull Request ha sido revisado y aprobado, se
-            puede fusionar en <code>develop</code>.
-          </li>
-        </ol>
-        <aside class="warning">
-          <p>
-            ⚠️ Siempre que se cree una nueva rama de soporte, es importante
-            realizar un <strong>git pull</strong> de las ramas principales
-            correspondientes, de esta manera se evitan conflictos de
-            sincronización de cambios.
-          </p>
-        </aside>
-      </google-codelab-step>
+</li>
+<li><strong>Crear la Pull Request para incorporar las correcciones a </strong><strong><code>develop</code></strong>: Crea un Pull Request para fusionar la rama de corrección de errores de nuevo en <code>develop</code>, asegurando que los cambios de la corrección se integren en el flujo de desarrollo.</li>
+<li><strong>Fusionar las correcciones a </strong><strong><code>develop</code></strong>: Después de que el Pull Request ha sido revisado y aprobado, se puede fusionar en <code>develop</code>.</li>
+</ol>
+<aside class="warning"><p> ⚠️ Siempre que se cree una nueva rama de soporte, es importante realizar un <strong>git pull</strong> de las ramas principales correspondientes, de esta manera se evitan conflictos de sincronización de cambios. </p>
+</aside>
 
+
+      </google-codelab-step>
+    
       <google-codelab-step label="Actividad Práctica" duration="0">
         <p>💡 <strong>Flujo de trabajo completo en Codeberg</strong></p>
-        <p>
-          Deberás trabajar con un repositorio en Codeberg cumpliendo los
-          siguientes requisitos:
-        </p>
-        <ol type="1">
-          <li>
-            <strong>Repositorio base<br /></strong> Puedes optar por una de las
-            siguientes opciones:
-            <ul>
-              <li>
-                Migrar un repositorio propio desde otra forja (GitHub, GitLab,
-                etc.) a Codeberg
-              </li>
-              <li>O crear un nuevo repositorio directamente desde Codeberg</li>
-            </ul>
-          </li>
-          <li>
-            <strong>Configuración del flujo de trabajo</strong>
-            <ul>
-              <li>
-                Implementa una estructura de trabajo basada en
-                <strong>GitFlow</strong>
-              </li>
-              <li>
-                Configura un <strong>Project Board</strong> (Kanban) para el
-                seguimiento de <em>issues</em>
-              </li>
-              <li>
-                Crea al menos un <em>issue</em> realista (por ejemplo: una
-                funcionalidad pendiente o un bug)
-              </li>
-              <li>
-                Documenta el <em>issue</em> utilizando la estructura recomendada
-              </li>
-              <li>
-                Asocia el <em>issue</em> al proyecto y muévelo a través del
-                tablero según su progreso
-              </li>
-              <li>Finalmente, <strong>resuelve y cierra el issue</strong></li>
-            </ul>
-          </li>
-          <li>
-            <strong>Entrega</strong>
-            <ul>
-              <li>
-                Comparte el <strong>enlace público</strong> al repositorio de
-                Codeberg donde se haya implementado todo lo visto en el taller
-              </li>
-            </ul>
-          </li>
-        </ol>
-        <aside class="warning">
-          <p>
-            ⚠️ Asegúrate de que el repositorio sea público, esté correctamente
-            estructurado y que refleje claramente el uso de GitFlow, Project
-            Boards e Issues según las prácticas recomendadas.
-          </p>
-        </aside>
-      </google-codelab-step>
-    </google-codelab>
+<p>Deberás trabajar con un repositorio en Codeberg cumpliendo los siguientes requisitos:</p>
+<ol type="1">
+<li><strong>Repositorio base<br></strong> Puedes optar por una de las siguientes opciones:<ul>
+<li>Migrar un repositorio propio desde otra forja (GitHub, GitLab, etc.) a Codeberg</li>
+<li>O crear un nuevo repositorio directamente desde Codeberg</li>
+</ul>
+</li>
+<li><strong>Configuración del flujo de trabajo</strong><ul>
+<li>Implementa una estructura de trabajo basada en <strong>GitFlow</strong></li>
+<li>Configura un <strong>Project Board</strong> (Kanban) para el seguimiento de <em>issues</em></li>
+<li>Crea al menos un <em>issue</em> realista (por ejemplo: una funcionalidad pendiente o un bug)</li>
+<li>Documenta el <em>issue</em> utilizando la estructura recomendada</li>
+<li>Asocia el <em>issue</em> al proyecto y muévelo a través del tablero según su progreso</li>
+<li>Finalmente, <strong>resuelve y cierra el issue</strong></li>
+</ul>
+</li>
+<li><strong>Entrega</strong><ul>
+<li>Comparte el <strong>enlace público</strong> al repositorio de Codeberg donde se haya implementado todo lo visto en el taller</li>
+</ul>
+</li>
+</ol>
+<aside class="warning"><p>  ⚠️ Asegúrate de que el repositorio sea público, esté correctamente estructurado y que refleje claramente el uso de GitFlow, Project Boards e Issues según las prácticas recomendadas. </p>
+</aside>
 
-    <script src="https://storage.googleapis.com/claat-public/native-shim.js"></script>
-    <script src="https://storage.googleapis.com/claat-public/custom-elements.min.js"></script>
-    <script src="https://storage.googleapis.com/claat-public/prettify.js"></script>
-    <script src="https://storage.googleapis.com/claat-public/codelab-elements.js"></script>
-    <script src="//support.google.com/inapp/api.js"></script>
-    <script>
-      const fabs = document.querySelector("#fabs");
-      const done = document.querySelector("#done");
-      const codelabNavButtons = document.querySelector("#codelab-nav-buttons");
-      const arrowBack = document.querySelector("#arrow-back");
-      fabs.removeChild(done);
-      codelabNavButtons.removeChild(arrowBack);
-    </script>
-  </body>
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/claat-public/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/prettify.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
 </html>
